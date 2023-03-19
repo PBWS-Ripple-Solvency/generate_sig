@@ -51,7 +51,7 @@ def getAccountInfo(treshold, account):
     response = requests.post(url, headers=headers, data=json.dumps(payload))
     result = response.json()
     balance = result['result']['account_data']['Balance']
-    if int(balance) < treshold :
+    if int(balance) < int(treshold) :
         return ""
     return result['result']['account_data']['PreviousTxnID']
 

@@ -70,4 +70,3 @@ def mintNFT(seed, data):
         nft_int += 1
 
 
-mintNFT("sEdVb34TB7AWkLcVCiyQMbT2WKqi5B8","285b612c625d2c5b632c645d2c5b652c665d2f5b782c795d2f393839393839373937393429")
