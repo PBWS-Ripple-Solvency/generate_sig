@@ -53,7 +53,7 @@ class App(QWidget):
         getProof(a, secret_key_sign,secret_key_receive)
         msg = QMessageBox()
         msg.setWindowTitle("Notification")
-        msg.setText("Function is done.")
+        msg.setText("You have mint your proof")
         msg.exec_()
         
         
