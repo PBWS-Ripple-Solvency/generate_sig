@@ -85,9 +85,12 @@ def get_y_from_x(hex_x):
     try:
         y_squared = (x**3 +7) %p
         y = ecdsa.numbertheory.square_root_mod_prime(y_squared, p)
+        
     except:
         print("Error computing y-coordinate.")
-    return(x,y)
+    if(type(y)!=None):
+        return(x,y)
+    
 
 #function to build the ring for the signature
 def getRing(treshold):
@@ -103,7 +106,9 @@ def getRing(treshold):
     for j in range(len(txList)): 
        
         tempoPoint = get_y_from_x(getAccountKey(txList[j]))
+        print(tempoPoint[1])
         points.append(tempoPoint)
     print(points)
     return points
 
+#getRing(100)
