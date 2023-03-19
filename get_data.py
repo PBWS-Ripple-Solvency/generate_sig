@@ -24,12 +24,12 @@ def getLatestTx():
     }
 
     response = requests.post(url, headers=headers, data=json.dumps(payload))
-    print(response)
     result = response.json()
     txs = result['result']['txs']
     accounts = []
     for i in range(len(txs)):
         accounts.append(txs[i]['Account'])
+    print("Retrieve tx ok")
     return(accounts)
 
 #get  the account Info, and if balance superior to treshold return the latest tx id to get the pub key
@@ -51,9 +51,9 @@ def getAccountInfo(treshold, account):
     response = requests.post(url, headers=headers, data=json.dumps(payload))
     result = response.json()
     balance = result['result']['account_data']['Balance']
-    if int(balance) > treshold :
-        return result['result']['account_data']['PreviousTxnID']
-    return("")
+    if int(balance) < treshold :
+        return ""
+    return result['result']['account_data']['PreviousTxnID']
 
 # return the pubkey (x points on secp256k1) from a tx hash
 def getAccountKey(txId):
@@ -90,21 +90,20 @@ def get_y_from_x(hex_x):
     return(x,y)
 
 #function to build the ring for the signature
-def getRing():
+def getRing(treshold):
     accountList = getLatestTx()
     tempoTxList=[]
     for i in range(len(accountList)): 
-        tempo = getAccountInfo(5,accountList[i])
+        tempo = getAccountInfo(treshold,accountList[i])
         if tempo !="" :
             tempoTxList.append(tempo)
     txList = list(set(tempoTxList))
-    print(txList)
+
     points = []
-    for i in range(len(txList)): 
-        a = get_y_from_x(getAccountKey(txList[i]))
-        points.append(a)
-    return a
-
-getRing()
-
+    for j in range(len(txList)): 
+       
+        tempoPoint = get_y_from_x(getAccountKey(txList[j]))
+        points.append(tempoPoint)
+    print(points)
+    return points
 
