@@ -2,7 +2,7 @@
 
 This executable developed in python during the **PBWS 2023 hackathon** is the local environnement to create ring signature for XRPL solvency. 
 
-This app allows you to generate your creditworthiness proof based on ring signatures directly in your local environment. Each time a proof is created, an SBT (Soul Bound Token) is minted and the data is stored on IPFS. 
+This app allows you to generate your creditworthiness proof based on ring signatures directly in your local environment. Each time a proof is created, an SBT (Soul Bound Token) is minted and the data are stored on IPFS. 
 It also allows you to verify the signatures, by retrieving them directly from our web-app.
 
 ## **What are ring-signature** 💍
