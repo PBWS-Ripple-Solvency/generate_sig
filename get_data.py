@@ -1,14 +1,19 @@
+#This script is use to retrieve the data needed to build our ring
+#It goes in 4 stpes : 
+#   - getLatestTx -> this function get the latest tx on the XRPL and return the address assiociated
+#   - getAcountInfo -> this function retrieve the info on the address, if the balance of the address is superior to the treshold we will use this address in our ring
+#   - getAccountKey -> this function retrieve the pubkey from an acount
+#   - get_y_from_x -> This function compute the y coordinate by passing it the x coordinate (public key on XRPL)
 import requests
 import json
-import pprint
-import math
-import binascii
 from ecdsa import curves, ecdsa
 
 url = "	https://xrplcluster.com/"
 p = 2**256 - 2**32 - 977
 
-#get the latest tx from the ledger, return account address
+# get the latest tx from the ledger
+# call tx_history API method from XRPL
+# return account address
 def getLatestTx():
     payload = {
         "method": "tx_history",
@@ -32,7 +37,9 @@ def getLatestTx():
     print("Retrieve tx ok")
     return(accounts)
 
-#get  the account Info, and if balance superior to treshold return the latest tx id to get the pub key
+# get the account Info
+# call the account_info API method from XRPL
+# If the balance of the account is superior to treshold return the latest tx id to get the pub key
 def getAccountInfo(treshold, account): 
 
     payload = {
@@ -56,6 +63,8 @@ def getAccountInfo(treshold, account):
     return result['result']['account_data']['PreviousTxnID']
 
 # return the pubkey (x points on secp256k1) from a tx hash
+# call tx API method from XRPL 
+# return the signing PubKey
 def getAccountKey(txId):
 
     payload = {
@@ -92,7 +101,9 @@ def get_y_from_x(hex_x):
         return(x,y)
     
 
-#function to build the ring for the signature
+# function to build the ring for the signature
+# take a treshold in parameters
+# return the ring that will be use in the signature (an array of tuple) : [(int,int)]
 def getRing(treshold):
     accountList = getLatestTx()
     tempoTxList=[]
@@ -111,4 +122,3 @@ def getRing(treshold):
     print(points)
     return points
 
-#getRing(100)
