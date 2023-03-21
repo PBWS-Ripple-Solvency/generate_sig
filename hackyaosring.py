@@ -3,7 +3,7 @@ import ast
 from binascii import unhexlify
 from secp256k1 import *
 from utils import *
-from termcolor import colored
+
 
 
 """

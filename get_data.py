@@ -7,8 +7,9 @@
 import requests
 import json
 from ecdsa import curves, ecdsa
+from xrpl.utils import xrp_to_drops
 
-url = "	https://xrplcluster.com/"
+url = "	https://s.altnet.rippletest.net:51234"
 p = 2**256 - 2**32 - 977
 
 # get the latest tx from the ledger
@@ -58,7 +59,7 @@ def getAccountInfo(treshold, account):
     response = requests.post(url, headers=headers, data=json.dumps(payload))
     result = response.json()
     balance = result['result']['account_data']['Balance']
-    if int(balance) < int(treshold) :
+    if (int(balance) < int(xrp_to_drops(treshold))) :
         return ""
     return result['result']['account_data']['PreviousTxnID']
 
@@ -121,4 +122,6 @@ def getRing(treshold):
         points.append(tempoPoint)
     print(points)
     return points
+
+
 

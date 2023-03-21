@@ -1,6 +1,7 @@
+# This script is use to mint nft 
+
 from xrpl.transaction import safe_sign_and_autofill_transaction, send_reliable_submission
 from xrpl.models.transactions.nftoken_mint import NFTokenMint, NFTokenMintFlag
-from xrpl.wallet import generate_faucet_wallet
 from xrpl.models.requests import AccountNFTs
 from xrpl.clients import JsonRpcClient
 from xrpl.wallet import Wallet
@@ -9,20 +10,14 @@ from xrpl.models.transactions import Memo
 # Mint an NFT on the XRPL via a NFTokenMint transaction
 # https://xrpl.org/nftokenmint.html#nftokenmint
 
-# If you want to mint a NFT on an already existing account, enter in the seed. If not, an account will be provided
-# Make sure the seed variable is empty "", if you want to use a brand new testing account
+
 # Connect to a testnet node
 print("Connecting to Testnet...")
 JSON_RPC_URL = "https://s.altnet.rippletest.net:51234/"
 client = JsonRpcClient(JSON_RPC_URL)
 
-# Get issuer account credentials from the testnet faucet
-# if seed == "":
-    # print("Requesting address from the Testnet faucet...")
-    # issuer_wallet = generate_faucet_wallet(client=client)
-    # issuerAddr = issuer_wallet.classic_address
-# else:
 
+# Function to mint an nft, take in argument a seed and some data (uri)
 def mintNFT(seed, data):
     issuer_wallet = Wallet(seed=seed, sequence=0)
     issuerAddr = issuer_wallet.classic_address
@@ -37,7 +32,7 @@ def mintNFT(seed, data):
     mint_tx = NFTokenMint (
         account=issuerAddr,
         nftoken_taxon=1,
-        flags=NFTokenMintFlag.TF_TRANSFERABLE,
+        flags=NFTokenMintFlag.TF_BURNABLE,
         uri=data
     )
 

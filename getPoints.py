@@ -3,8 +3,11 @@
 # Take a seed in arguments and return an array of tuple [(int,int),int] -> [(x,y),SecretKey]
 
 from xrpl.wallet import Wallet
+from xrpl.utils import xrp_to_drops
 import ecdsa
 import math
+import requests
+import json
 
 p = 2**256 - 2**32 - 977
 
@@ -21,4 +24,36 @@ def getPoints(seed):
     x = int.from_bytes(public_key[0:32], byteorder='big')
     y = int.from_bytes(public_key[33:64],  byteorder='big')
     return[(x,y),int(issuer_private_key,16)]
+
+def getAccountBalance(treshold, seed): 
+
+    issuer_wallet = Wallet(seed=seed, sequence=0)
+    issuer_address =  issuer_wallet.classic_address
+    print(issuer_address)
+    url = "	https://s.altnet.rippletest.net:51234"
+    payload = {
+        "method": "account_info",
+        "params": [
+            {
+                "account": issuer_address
+            }
+        ]
+    }
+
+    headers = {
+        "Content-Type": "application/json"
+    }
+
+    response = requests.post(url, headers=headers, data=json.dumps(payload))
+    result = response.json()
+    print(result)
+    balance = result['result']['account_data']['Balance']
+    print(balance)
+    print(xrp_to_drops(treshold))
+    if (int(balance)>int(xrp_to_drops(treshold))):
+          return True
+    else : 
+         return False
+
+
    
