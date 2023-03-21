@@ -33,3 +33,6 @@ This repo is divided in 4 parties :
 ## **Start prooving solvency**
 
 To start using the app, simply download it from our website. No additional installation or setup is required. Just follow the instructions provided in the readme to generate or verify your proofs using ring signatures. Our goal is to make the process as straightforward and user-friendly as possible, so you can focus on what matters most: securing your solvency proof while protecting your privacy.
+
+## **More about ring signatures**
+If you're interested in learning more about ring signatures, we recommend reading the following [research article](https://people.csail.mit.edu/rivest/pubs/RST01.pdf). This paper provides an in-depth introduction to ring signatures, their properties, and their applications in privacy-preserving systems.
