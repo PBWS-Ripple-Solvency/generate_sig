@@ -2,7 +2,7 @@
 # It uses PyQt5 
 
 from PyQt5.QtWidgets import QApplication,QMessageBox, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout
-from hackyaosring import haosring_check
+from ring_signature.hackyaosring import haosring_check
 import ast
 
 class ProofApp(QWidget):

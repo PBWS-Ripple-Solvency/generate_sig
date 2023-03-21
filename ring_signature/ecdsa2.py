@@ -4,7 +4,7 @@ from binascii import hexlify
 
 from bitcoin import encode_pubkey
 from Crypto.Hash import keccak
-from utils import tobe256, bytes_to_int, randb256
+from ring_signature.utils import tobe256, bytes_to_int, randb256
 
 
 def pack_signature(v, r, s):

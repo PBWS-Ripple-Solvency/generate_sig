@@ -48,7 +48,7 @@ class App(QWidget):
 
     def on_button_click(self):
         # Import function and call it with the inputs
-        from getProof import getProof
+        from get_data.getProof import getProof
         secret_key_sign = self.textbox1.text()
         secret_key_receive = self.textbox2.text()
         amount = self.textbox3.text()

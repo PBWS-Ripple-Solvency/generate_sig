@@ -1,8 +1,8 @@
 from __future__ import print_function
 import ast
 from binascii import unhexlify
-from secp256k1 import *
-from utils import *
+from ring_signature.secp256k1 import *
+from ring_signature.utils import *
 
 
 

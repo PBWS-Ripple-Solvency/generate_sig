@@ -1,10 +1,10 @@
 # This script imports all others. It then generates the proof and stores it on ipfs. The proof is then associated to an NFT, the URI being the ipfs link.
 
-from hackyaosring import haosring_sign
+from ring_signature.hackyaosring import haosring_sign
 import requests
-from get_data import getRing
-from getPoints import getPoints,getAccountBalance
-from mint_nft import mintNFT
+from get_data.get_data import getRing
+from get_data.getPoints import getPoints,getAccountBalance
+from get_data.mint_nft import mintNFT
 
 # function to send data to ipfs using infura gateway
 def sendToIpfs(data):
@@ -32,7 +32,7 @@ def getProof(treshold, seedprivate, seedpublic):
         mintNFT(seedpublic,data=data)
         return True
     return False
-#♣getProof(5,"sEd7LgTPvXYGM7MMAB1fRYPnbDLpcd9","sEdTt4Ys5c492c57EguTFCaXYRfsAmT")
+getProof(5,"sEd7LgTPvXYGM7MMAB1fRYPnbDLpcd9","sEdTt4Ys5c492c57EguTFCaXYRfsAmT")
 
 
      
