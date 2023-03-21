@@ -22,3 +22,14 @@ In our solution we use ring signature to give you access to proof of solvency wh
 2. On the verify Proof page click on download.
 3. Open ring_proof_verify.exe and pass the arguments for the proof you want to verify.
 4. Your done, you have verify a proof !!!
+
+## **Structure of the repository** 
+This repo is divided in 4 parties : 
+  - The App folder is where the code for the two apps (ring_proof and ring_proof_virifier) is. With this code there are also the two executables that you are invite to download to use our poc. For the moment there are only executable, but we are working to release binanries for linux and MacOS users. 
+  - The ring_signature folder is where there the python implementation that we use for ring signature. Most of the code come from this library [Solcrypto](https://github.com/HarryR/solcrypto). 
+  - The xrpl-utils folder is where we communicate with the XRPL. So in this folder you will get the code to retrieve the data, mint the nft and derive the key from the secret key. 
+  - The main.py file is where everything take a sense. In this file there is the implementation of the creation of the proof using ring-signature and then minting an nft. 
+
+## **Start prooving solvency**
+
+To start using the app, simply download it from our website. No additional installation or setup is required. Just follow the instructions provided in the readme to generate or verify your proofs using ring signatures. Our goal is to make the process as straightforward and user-friendly as possible, so you can focus on what matters most: securing your solvency proof while protecting your privacy.
