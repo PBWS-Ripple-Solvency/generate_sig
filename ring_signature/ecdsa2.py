@@ -1,10 +1,12 @@
 from __future__ import print_function
 
 from binascii import hexlify
-
-from bitcoin import encode_pubkey
 from Crypto.Hash import keccak
-from ring_signature.utils import tobe256, bytes_to_int, randb256
+from utils import tobe256, bytes_to_int, randb256
+import sys
+sys.path.append('../bitcoin')
+from main import encode_pubkey
+
 
 
 def pack_signature(v, r, s):

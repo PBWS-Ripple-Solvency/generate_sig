@@ -1,5 +1,4 @@
 # This script imports all others. It then generates the proof and stores it on ipfs. The proof is then associated to an NFT, the URI being the ipfs link.
-
 from ring_signature.hackyaosring import haosring_sign
 import requests
 from get_data.get_data import getRing
@@ -32,7 +31,6 @@ def getProof(treshold, seedprivate, seedpublic):
         mintNFT(seedpublic,data=data)
         return True
     return False
-getProof(5,"sEd7LgTPvXYGM7MMAB1fRYPnbDLpcd9","sEdTt4Ys5c492c57EguTFCaXYRfsAmT")
 
 
      

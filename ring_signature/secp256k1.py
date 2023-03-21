@@ -1,8 +1,8 @@
 import sys
 from random import randint
 from py_ecc.secp256k1.secp256k1 import add, multiply, inv, N, P, G, ecdsa_raw_recover
-from ring_signature.utils import hashs, tobe256
-from ring_signature.ecdsa2 import pubkey_to_ethaddr
+from utils import hashs, tobe256
+from ecdsa2 import pubkey_to_ethaddr
 
 
 #assert False == "Do not use, use altbn128"

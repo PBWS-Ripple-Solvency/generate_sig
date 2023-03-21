@@ -4,6 +4,8 @@
 from PyQt5.QtWidgets import QApplication,QDesktopWidget, QWidget, QLabel, QLineEdit, QPushButton, QMessageBox
 from PyQt5.QtGui import QIcon
 import sys
+sys.path.append('../')
+from main import getProof
 
 class App(QWidget):
 
@@ -48,7 +50,7 @@ class App(QWidget):
 
     def on_button_click(self):
         # Import function and call it with the inputs
-        from get_data.getProof import getProof
+       
         secret_key_sign = self.textbox1.text()
         secret_key_receive = self.textbox2.text()
         amount = self.textbox3.text()
